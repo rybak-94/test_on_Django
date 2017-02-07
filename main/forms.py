@@ -8,8 +8,10 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ('author', 'title')
 
+
+
 class TestForm(forms.ModelForm):
 
     class Meta:
-        model = Post
+        model = Test
         fields = ('author', 'title')

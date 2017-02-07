@@ -1,0 +1,14 @@
+    {% extends 'main/base.html' %}
+
+    {% block content %}
+        <div class="post">
+            {% if test.published_date %}
+                <div class="date">
+                    {{ test.published_date }}
+                </div>
+            {% endif %}
+            <a class="btn btn-default" href="{% url 'test_edit' pk=test.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+            <h1>{{ test.title }}</h1>
+            <p>{{ test.author }}</p>
+        </div>
+    {% endblock %}

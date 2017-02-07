@@ -1,27 +1,27 @@
 h1 a {
-color: #FCA205;
+color: #F2A205;
 }
 body {
-padding-left: 15px;
+padding-left: 5px;
 }
 h1 a {
 color: #FCA205;
 font-family: 'Lobster';
 }
 .page-header {
-    background-color: #ff9400;
+    background-color: #333;
     margin-top: 0;
     padding: 20px 20px 20px 40px;
 }
 
 .page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
     color: #ffffff;
-    font-size: 36pt;
+    font-size: 25pt;
     text-decoration: none;
 }
 
 .content {
-    margin-left: 40px;
+    margin-left: 10px;
 }
 
 h1, h2, h3, h4 {
@@ -49,9 +49,49 @@ h1, h2, h3, h4 {
 }
 
 .post {
-    margin-bottom: 70px;
+    margin-bottom: 20px;
 }
 
 .post h1 a, .post h1 a:visited {
     color: #000000;
+}
+
+* {font-family: Arial, Helvetica, sans-serif}
+#nav_menu {padding: 0; width: 762px; margin: 0 auto}
+#nav_menu ul {list-style: none; margin: 0; padding: 0}
+#nav_menu li {display: inline}
+#nav_menu a {
+float: right;
+width: 125px;
+height: 40px;
+background-color: #333;
+border-left: 2px solid #ffffff;
+text-decoration: none;
+text-align: center;
+padding: 0;
+padding-top: 6px;
+font-size: 15px;
+color: #ffffff
+}
+
+#nav_menu a:hover {background-color: #920033; height: 40px;}
+
+.page-button{
+    color: #ffffff;
+    font-size: 15pt;
+    text-decoration: none;
+    text-decoration: none;
+    text-align: left;
+    border-bottom: 2px solid #000;
+}
+.button_add{
+    padding: 0;
+    width: 50px;
+    margin: 0 auto;
+}
+.button_add ul {
+    list-style: none; margin: 0; padding: 0
+}
+.page-button li{
+    display: inline
 }

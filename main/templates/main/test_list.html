@@ -1,12 +1,12 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-	{% for test in tests %}
-		<div class='test'>
-	        {{ test.published_date }}
+    {% for test in tests %}
+        <div class="post">
+            <div class="date">
+                {{ test.published_date }}
             </div>
-            <h1><a href="">{{ test.title }}</a></h1>
-            <p>{{ test.author|linebreaksbr }}</p>
-		</div>
-	{% endfor %}
+            <h1><a href="{% url 'test_detail' pk=test.pk %}">{{ test.title }}</a></h1>
+        </div>
+    {% endfor %}
 {% endblock content %}
