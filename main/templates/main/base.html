@@ -11,9 +11,10 @@
     <body>
         <div id="nav_menu">
             <ul>
+            <li><a href="/user">User</a></li>
             <li><a href="/test">Test </a></li>
             <li><a href="/post">Post</a></li>
-            <li><a href="/">Django</a></li>
+            <li><a href="/">Main</a></li>
             </ul>
         </div>
         <div class="page-header">
@@ -24,6 +25,8 @@
                 <li><a href="{% url 'post_new' %}"><span class="button_add glyphicon-plus"> Add Post</span></a></li>
                 </br></br>
                 <li><a href="{% url 'test_new' %}"><span class="button_add glyphicon-plus"> Add Test</span></a></li>
+                </br></br>
+                <li><a href="{% url 'user_add' %}"><span class="button_add glyphicon-plus"> Add User</span></a></li>
             {% endif %}
                 </ul>
         </div>

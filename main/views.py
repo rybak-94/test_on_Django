@@ -2,10 +2,14 @@ from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404
 from django.shortcuts import redirect
 from django.utils import timezone
+from django import forms
 from .models import Post
 from .models import Test
+from .models import Question
+from .models import ExtendUser
 from .forms import PostForm
 from .forms import TestForm
+from .forms import UserForm
 
 def main(request):
     return render(request, 'main/main.html')
@@ -81,3 +85,20 @@ def test_edit(request, pk):
         form = TestForm(instance=test)
     return render(request, 'main/test_edit.html', {'form': form})
 
+
+def user_add(request):
+    form = UserForm(request.POST)
+    if request.method == "POST":
+        if form.is_valid():
+            form = form.save(commit=True)
+            form.save()
+    return render(request, 'main/user_add.html', {'form':form})
+
+
+def user_list(request):
+    users = ExtendUser.objects.all()
+    return render(request, 'main/user_list.html', {'users':users})
+
+def user_detail(request, pk):
+    user = get_object_or_404(ExtendUser, pk=pk)
+    return render(request, 'main/user_detail.html', {'user':user})

@@ -1,0 +1,14 @@
+    {% extends 'main/base.html' %}
+
+    {% block content %}
+        <div class="post">
+
+            <h1>{{ user.name }}</h1>
+            <div class="date">
+                    {{ user.created_date }}
+            </div>
+            <p>{{ user.age }}</p>
+            <p>{{ user.type_user__display }}</p>
+            <p>{{ user.city }}</p>
+        </div>
+    {% endblock %}
