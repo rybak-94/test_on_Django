@@ -102,3 +102,6 @@ def user_list(request):
 def user_detail(request, pk):
     user = get_object_or_404(ExtendUser, pk=pk)
     return render(request, 'main/user_detail.html', {'user':user})
+
+def data(request):
+    return render(request, 'main/data.html')

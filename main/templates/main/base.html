@@ -10,7 +10,6 @@
             <link rel="stylesheet" href="{% static 'css/main.css' %}">
             <link type="text/javascript" href="{% static 'js/main.js' %}">
         </head>
-        <body>
     <body>
 <nav class="navbar navbar-inverse" role="navigation">
   <div class="container-fluid">
@@ -37,7 +36,7 @@
         <button type="submit" class="btn btn-default">Find</button>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
+        <li class="data_part_nav"><a href="/data">Data</a></li>
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             Setting 
@@ -55,36 +54,7 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-<script>
-function addElementLi(){
-  if ((window.location.href.indexOf("new") > -1)){
-    $("ol.breadcrumb").append("<li class='new_part'>New</li>");
-  }
-}
 
-function checkElementNav($elements1){
-  $($elements1).addClass('active');
-}
-
-$(document).ready(function(){ 
-if (window.location.href.indexOf("post") > -1) { 
-  $("ol.breadcrumb").append("<li class='post_part'></li>");
-  $("li.post_part").append("<a class='bread_post' href='/post'>Post</a>");
-  addElementLi();
-  checkElementNav('li.post_part_nav');
-} else if (window.location.href.indexOf("user") > -1) {
-    $("ol.breadcrumb").append("<li class='user_part'></li>");
-    $("li.user_part").append("<a class='bread_user' href='/user'>User</a>");
-    addElementLi();
-    checkElementNav('li.user_part_nav');
-} else if (window.location.href.indexOf("test") > -1) {
-    $("ol.breadcrumb").append("<li class='test_part'></li>");
-    $("li.test_part").append("<a class='bread_test' href='/test'>Test</a>");
-    addElementLi();
-    checkElementNav('li.test_part_nav');
-}
-});
-</script>
 <ol class="breadcrumb" id="bread_part">
   <li class="home_part"><a class="bread_home" href="/">Home</a></li>
 </ol>
@@ -105,6 +75,40 @@ if (window.location.href.indexOf("post") > -1) {
                 </div>
             </div>
         </div>
+        <script>
+            function addElementLi(){
+              if ((window.location.href.indexOf("new") > -1)){
+                $("ol.breadcrumb").append("<li class='new_part'>New</li>");
+              }
+            }
+
+            function checkElementNav($elements1){
+              $($elements1).addClass('active');
+            }
+
+            $(document).ready(function(){ 
+            if (window.location.href.indexOf("post") > -1) { 
+              $("ol.breadcrumb").append("<li class='post_part'></li>");
+              $("li.post_part").append("<a class='bread_post' href='/post'>Post</a>");
+              addElementLi();
+              checkElementNav('li.post_part_nav');
+            } else if (window.location.href.indexOf("user") > -1) {
+                $("ol.breadcrumb").append("<li class='user_part'></li>");
+                $("li.user_part").append("<a class='bread_user' href='/user'>User</a>");
+                addElementLi();
+                checkElementNav('li.user_part_nav');
+            } else if (window.location.href.indexOf("test") > -1) {
+                $("ol.breadcrumb").append("<li class='test_part'></li>");
+                $("li.test_part").append("<a class='bread_test' href='/test'>Test</a>");
+                addElementLi();
+                checkElementNav('li.test_part_nav');
+            } else if (window.location.href.indexOf("data") > -1) {
+                $("ol.breadcrumb").append("<li class='data_part'></li>");
+                $("li.data_part").append("<a class='bread_test' href='/data'>Data</a>");
+                addElementLi();
+                checkElementNav('li.data_part_nav');
+            }
+            });
+          </script>
     </body>
-        </body>
     </html>
