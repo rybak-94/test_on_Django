@@ -86,13 +86,13 @@ def test_edit(request, pk):
     return render(request, 'main/test_edit.html', {'form': form})
 
 
-def user_add(request):
+def user_new(request):
     form = UserForm(request.POST)
     if request.method == "POST":
         if form.is_valid():
             form = form.save(commit=True)
             form.save()
-    return render(request, 'main/user_add.html', {'form':form})
+    return render(request, 'main/user_new.html', {'form':form})
 
 
 def user_list(request):

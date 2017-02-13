@@ -1,32 +1,99 @@
   {% load staticfiles %}
     <html>
         <head>
-            <title>Django Girls blog</title>
-            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+            <title>Rybak blog</title>
+            <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+            <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+            <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+            <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
             <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
             <link rel="stylesheet" href="{% static 'css/main.css' %}">
+            <link type="text/javascript" href="{% static 'js/main.js' %}">
         </head>
         <body>
     <body>
-        <div id="nav_menu">
-            <ul>
-            <li><a href="/user">User</a></li>
-            <li><a href="/test">Test </a></li>
-            <li><a href="/post">Post</a></li>
-            <li><a href="/">Main</a></li>
-            </ul>
+<nav class="navbar navbar-inverse" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Rybak</a>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="user_part_nav"><a href="/user">User</a></li>
+        <li class="post_part_nav"><a href="/post">Post</a></li>
+        <li class="test_part_nav"><a href="/test">Test</a></li>
+      </ul>
+      <form class="navbar-form navbar-left">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
         </div>
-        <div class="page-header">
-        </div>
+        <button type="submit" class="btn btn-default">Find</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            Setting 
+            <b class="caret"></b>
+            </a>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<script>
+function addElementLi(){
+  if ((window.location.href.indexOf("new") > -1)){
+    $("ol.breadcrumb").append("<li class='new_part'>New</li>");
+  }
+}
+
+function checkElementNav($elements1){
+  $($elements1).addClass('active');
+}
+
+$(document).ready(function(){ 
+if (window.location.href.indexOf("post") > -1) { 
+  $("ol.breadcrumb").append("<li class='post_part'></li>");
+  $("li.post_part").append("<a class='bread_post' href='/post'>Post</a>");
+  addElementLi();
+  checkElementNav('li.post_part_nav');
+} else if (window.location.href.indexOf("user") > -1) {
+    $("ol.breadcrumb").append("<li class='user_part'></li>");
+    $("li.user_part").append("<a class='bread_user' href='/user'>User</a>");
+    addElementLi();
+    checkElementNav('li.user_part_nav');
+} else if (window.location.href.indexOf("test") > -1) {
+    $("ol.breadcrumb").append("<li class='test_part'></li>");
+    $("li.test_part").append("<a class='bread_test' href='/test'>Test</a>");
+    addElementLi();
+    checkElementNav('li.test_part_nav');
+}
+});
+</script>
+<ol class="breadcrumb" id="bread_part">
+  <li class="home_part"><a class="bread_home" href="/">Home</a></li>
+</ol>
         <div class="page-button">
-                <ul>
+                <ul style="width: 15%">
             {% if user.is_authenticated %}
-                <li><a href="{% url 'post_new' %}"><span class="button_add glyphicon-plus"> Add Post</span></a></li>
-                </br></br>
-                <li><a href="{% url 'test_new' %}"><span class="button_add glyphicon-plus"> Add Test</span></a></li>
-                </br></br>
-                <li><a href="{% url 'user_add' %}"><span class="button_add glyphicon-plus"> Add User</span></a></li>
+                <li><a href="{% url 'post_new' %}"><h3>Post <span class="label label-primary">New</span></h3></a></li>
+                <li><a href="{% url 'test_new' %}"><h3>Test <span class="label label-primary">New</span></h3></a></li>
+                <li><a href="{% url 'user_new' %}"><h3>User <span class="label label-primary">New</span></h3></a></li>
             {% endif %}
                 </ul>
         </div>
