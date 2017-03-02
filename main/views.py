@@ -1,27 +1,34 @@
 from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.conf import settings
+from django.http import HttpResponseRedirect
+from django.contrib.auth import login
+from django.contrib.auth import logout
 from django.shortcuts import redirect
 from django.utils import timezone
 from django import forms
 from .models import Post
 from .models import Test
-from .models import Question
-from .models import ExtendUser
 from .forms import PostForm
 from .forms import TestForm
-from .forms import UserForm
+from .forms import LoginForm
 
+@login_required(login_url='/login/')
 def main(request):
     return render(request, 'main/main.html')
 
+@login_required(login_url='/login/')
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
     return render(request, 'main/post_list.html', {'posts': posts})
 
+@login_required(login_url='/login/')
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     return render(request, 'main/post_detail.html', {'post': post})
 
+@login_required(login_url='/login/')
 def post_new(request):
     if request.method == "POST":
         form = PostForm(request.POST)
@@ -35,6 +42,7 @@ def post_new(request):
         form = PostForm()
     return render(request, 'main/post_edit.html', {'form': form})
 
+@login_required(login_url='/login/')
 def post_edit(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
@@ -49,15 +57,17 @@ def post_edit(request, pk):
         form = PostForm(instance=post)
     return render(request, 'main/post_edit.html', {'form': form})
 
+@login_required(login_url='/login/')
 def test_list(request):
     tests = Test.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
     return render(request, 'main/test_list.html', {'tests': tests})
 
-
+@login_required(login_url='/login/')
 def test_detail(request, pk):
     test = get_object_or_404(Test, pk=pk)
     return render(request, 'main/test_detail.html', {'test' : test})
 
+@login_required(login_url='/login/')
 def test_new(request):
     if request.method == "POST":
         form = TestForm(request.POST)
@@ -71,6 +81,7 @@ def test_new(request):
         form = TestForm()
     return render(request, 'main/test_edit.html', {'form': form})
 
+@login_required(login_url='/login/')
 def test_edit(request, pk):
     test = get_object_or_404(Test, pk=pk)
     if request.method == "POST":
@@ -85,23 +96,21 @@ def test_edit(request, pk):
         form = TestForm(instance=test)
     return render(request, 'main/test_edit.html', {'form': form})
 
-
-def user_new(request):
-    form = UserForm(request.POST)
-    if request.method == "POST":
-        if form.is_valid():
-            form = form.save(commit=True)
-            form.save()
-    return render(request, 'main/user_new.html', {'form':form})
-
-
-def user_list(request):
-    users = ExtendUser.objects.all()
-    return render(request, 'main/user_list.html', {'users':users})
-
-def user_detail(request, pk):
-    user = get_object_or_404(ExtendUser, pk=pk)
-    return render(request, 'main/user_detail.html', {'user':user})
-
+@login_required(login_url='/login/')
 def data(request):
     return render(request, 'main/data.html')
+
+def log_in(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            if form.get_user():
+                login(request, form.get_user())
+                return HttpResponseRedirect('/')
+    else:
+        form = LoginForm()
+    return render(request, 'main/login.html', {'form': form})
+
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect("/login/")

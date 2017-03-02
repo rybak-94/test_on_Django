@@ -1,6 +1,13 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
+    <div class="page-button">
+            <ul style="width: 20%">
+        {% if user.is_authenticated %}
+            <li><a href="{% url 'test_new' %}"><h3>Test <span class="label label-primary">New</span></h3></a></li>
+        {% endif %}
+            </ul>
+    </div>
     {% for test in tests %}
         <div class="post">
             <div class="date">

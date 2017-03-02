@@ -21,11 +21,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">Rybak</a>
+      <a class="navbar-brand" href="/">{{ user.username }}</a>
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="user_part_nav"><a href="/user">User</a></li>
+        <li class="user_part_nav"><a href="/">User</a></li>
         <li class="post_part_nav"><a href="/post">Post</a></li>
         <li class="test_part_nav"><a href="/test">Test</a></li>
       </ul>
@@ -47,7 +47,7 @@
             <li><a href="#">Another action</a></li>
             <li><a href="#">Something else here</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
           </ul>
         </li>
       </ul>
@@ -58,15 +58,6 @@
 <ol class="breadcrumb" id="bread_part">
   <li class="home_part"><a class="bread_home" href="/">Home</a></li>
 </ol>
-        <div class="page-button">
-                <ul style="width: 15%">
-            {% if user.is_authenticated %}
-                <li><a href="{% url 'post_new' %}"><h3>Post <span class="label label-primary">New</span></h3></a></li>
-                <li><a href="{% url 'test_new' %}"><h3>Test <span class="label label-primary">New</span></h3></a></li>
-                <li><a href="{% url 'user_new' %}"><h3>User <span class="label label-primary">New</span></h3></a></li>
-            {% endif %}
-                </ul>
-        </div>
         <div class="content container">
             <div class="row">
                 <div class="col-md-8">
@@ -94,7 +85,7 @@
               checkElementNav('li.post_part_nav');
             } else if (window.location.href.indexOf("user") > -1) {
                 $("ol.breadcrumb").append("<li class='user_part'></li>");
-                $("li.user_part").append("<a class='bread_user' href='/user'>User</a>");
+                $("li.user_part").append("<a class='bread_user' href='/'>User</a>");
                 addElementLi();
                 checkElementNav('li.user_part_nav');
             } else if (window.location.href.indexOf("test") > -1) {

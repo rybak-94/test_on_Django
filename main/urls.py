@@ -11,8 +11,7 @@ urlpatterns = [
     url(r'^test/detail/(?P<pk>[0-9]+)/$', views.test_detail, name='test_detail'),
     url(r'^test/edit/(?P<pk>[0-9]+)/$', views.test_edit, name='test_edit'),
     url(r'^test/new/$', views.test_new, name='test_new'),
-    url(r'^user/new/$', views.user_new, name='user_new'),
-    url(r'^user/$', views.user_list, name="user_list"),
-    url(r'^user/detail/(?P<pk>[0-9]+)/$', views.user_detail, name='user_detail'),
     url(r'^data/$', views.data, name="data"),
+    url(r'^login/$', views.log_in, name='login'),
+    url(r'^logout/$', views.logout_view, name='logout'),
 ]
